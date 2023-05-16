@@ -16,7 +16,7 @@ public class Main {
 
         bonusMile = (int) ticketPrice / bonusDivider;
 
-        System.out.println("Начислим "+ bonusMile +" бонусных миль за покупку билета.");
+        System.out.println("Начислим " + bonusMile + " бонусных миль за покупку билета.");
     }
 
 }
