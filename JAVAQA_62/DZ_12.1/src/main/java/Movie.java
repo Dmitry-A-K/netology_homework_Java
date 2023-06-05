@@ -1,5 +1,5 @@
 public class Movie {
-    static int classNumber;
+    static int classNumber = 1;
     private int movieCount;
     private String movieId;
     private String movieName;
@@ -9,8 +9,11 @@ public class Movie {
     private String moviePromo;
 
     private int increaseCount() {
-        int i = classNumber++;
-        return i;
+        return classNumber++;
+    }
+
+    public Movie() {
+
     }
 
     public Movie(String movieId, String movieName, String movieDescription, String movieGenre, String moviePoster, String moviePromo) {
@@ -38,6 +41,62 @@ public class Movie {
     public String movieToString() {
         return movieCount + "," + movieId + "," + movieName + "," + movieDescription +
                 "," + movieGenre + "," + moviePoster + "," + moviePromo;
+    }
+
+    public int getMovieCount() {
+        return movieCount;
+    }
+
+    public void setMovieCount(int movieCount) {
+        this.movieCount = movieCount;
+    }
+
+    public String getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
+    }
+
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    public String getMovieDescription() {
+        return movieDescription;
+    }
+
+    public void setMovieDescription(String movieDescription) {
+        this.movieDescription = movieDescription;
+    }
+
+    public String getMovieGenre() {
+        return movieGenre;
+    }
+
+    public void setMovieGenre(String movieGenre) {
+        this.movieGenre = movieGenre;
+    }
+
+    public String getMoviePoster() {
+        return moviePoster;
+    }
+
+    public void setMoviePoster(String moviePoster) {
+        this.moviePoster = moviePoster;
+    }
+
+    public String getMoviePromo() {
+        return moviePromo;
+    }
+
+    public void setMoviePromo(String moviePromo) {
+        this.moviePromo = moviePromo;
     }
 
 }
