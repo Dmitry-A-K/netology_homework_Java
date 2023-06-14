@@ -29,11 +29,11 @@ public class TodosTest {
     }
 
     @Test
-    public void queryTest() {
-        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
+    public void queryMeeting() {
 
-        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
-        Epic epic = new Epic(55, subtasks);
+        int expected = 555; // Id искомых строк
+        String query = "Приложение НетоБанка"; // Искомые строки
+        int actual = 0;
 
         Meeting meeting = new Meeting(
                 555,
@@ -41,31 +41,51 @@ public class TodosTest {
                 "Приложение НетоБанка",
                 "Во вторник после обеда"
         );
-
         Todos todos = new Todos();
-
-        todos.add(simpleTask);
-        todos.add(epic);
         todos.add(meeting);
 
-        int[] id = {55, 5, 555}; // Id искомых строк
-        String[] query = {"Яйца", "Позвонить родителям", "Приложение НетоБанка"}; // Искомые строки
-
-        String index = "";
-        for (int i : id) {
-            index = index + Integer.toString(i) + ",";
+        for (Task i : todos.search(query)) {
+            actual = i.id;
         }
 
-        String result = "";
-        for (String q : query) {
-            for (Task i : todos.search(q)) {
-                result = result + Integer.toString(i.id) + ",";
-            }
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void querySubtasks() {
+
+        int expected = 55; // Id искомых строк
+        String query = "Молоко"; // Искомые строки
+        int actual = 0;
+
+        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
+        Epic epic = new Epic(55, subtasks);
+
+        Todos todos = new Todos();
+        todos.add(epic);
+
+        for (Task i : todos.search(query)) {
+            actual = i.id;
         }
 
-        String expected = index;
-        String actual = result;
-        Assertions.assertEquals(expected, actual); // Сверка строк
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void querySimpleTask() {
+
+        String query = "Позвонить родителям"; // Искомые строки
+
+        Todos todos = new Todos();
+        SimpleTask simpleTask1 = new SimpleTask(5, "Позвонить родителям");
+        todos.add(simpleTask1);
+        SimpleTask simpleTask2 = new SimpleTask(6, "Позвонить детям");
+        todos.add(simpleTask2);
+
+        Task[] expected = {simpleTask1};
+        Task[] actual = todos.search(query);
+
+        Assertions.assertArrayEquals(expected, actual);
     }
 
 }
