@@ -62,7 +62,7 @@ public class ShopRepository {
                 }
             }
             products = tmp;
-            new RuntimeException("Element with id: " + id + " remove");
+           // new AlreadyExistsException("Element with id: " + id + " remove");
         }
     }
 }

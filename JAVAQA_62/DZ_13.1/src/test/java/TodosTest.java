@@ -31,9 +31,7 @@ public class TodosTest {
     @Test
     public void queryMeeting() {
 
-        int expected = 555; // Id искомых строк
         String query = "Приложение НетоБанка"; // Искомые строки
-        int actual = 0;
 
         Meeting meeting = new Meeting(
                 555,
@@ -44,19 +42,16 @@ public class TodosTest {
         Todos todos = new Todos();
         todos.add(meeting);
 
-        for (Task i : todos.search(query)) {
-            actual = i.id;
-        }
+        Task[] expected = {meeting};
+        Task[] actual = todos.search(query);
 
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
     public void querySubtasks() {
 
-        int expected = 55; // Id искомых строк
         String query = "Молоко"; // Искомые строки
-        int actual = 0;
 
         String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
         Epic epic = new Epic(55, subtasks);
@@ -64,11 +59,10 @@ public class TodosTest {
         Todos todos = new Todos();
         todos.add(epic);
 
-        for (Task i : todos.search(query)) {
-            actual = i.id;
-        }
+        Task[] expected = {epic};
+        Task[] actual = todos.search(query);
 
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test

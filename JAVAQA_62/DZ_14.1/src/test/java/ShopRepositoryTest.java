@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class ShopRepositoryTest {
     private Product item1 = new Product(1, "Майка", 10);
     private Product item2 = new Product(2, "Футболка", 15);
@@ -55,10 +57,11 @@ public class ShopRepositoryTest {
         repo.add(item3);
         repo.add(item4);
         repo.add(item5);
-        repo.removeById(6);
-        Product[] expected = {item1, item2, item3, item4, item5};
-        Product[] actual = repo.findAll();
-        Assertions.assertArrayEquals(expected, actual);
+
+        Assertions.assertThrows(NotFoundException.class, () ->{
+            repo.removeById(100);
+        });
+
     }
 
 }
