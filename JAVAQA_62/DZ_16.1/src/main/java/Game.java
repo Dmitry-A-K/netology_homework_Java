@@ -29,16 +29,16 @@ public class Game {
         int result;
         Player player1 = searchPlayer(playerName1);
         Player player2 = searchPlayer(playerName2);
-            if (player1 == null) throw new NotRegisteredException("Player with name: " + playerName1 + " not register");
-            if (player2 == null) throw new NotRegisteredException("Player with id: " + playerName2 + " not register");
+        if (player1 == null) throw new NotRegisteredException("Player with name: " + playerName1 + " not register");
+        if (player2 == null) throw new NotRegisteredException("Player with id: " + playerName2 + " not register");
 
-            if (player1.getStrength() > player2.getStrength()) {
-                result = 1;
-            } else if (player1.getStrength() < player2.getStrength()) {
-                result = 2;
-            } else {
-                result = 0;
-            }
+        if (player1.getStrength() > player2.getStrength()) {
+            result = 1;
+        } else if (player1.getStrength() < player2.getStrength()) {
+            result = 2;
+        } else {
+            result = 0;
+        }
 
         return result;
     }
