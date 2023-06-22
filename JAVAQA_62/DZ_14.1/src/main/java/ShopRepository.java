@@ -30,9 +30,8 @@ public class ShopRepository {
         if (findById(product.id) == null) {
             products = addToArray(products, product);
         } else {
-            new AlreadyExistsException("Element with id: " + product.id + " already exists");
+            throw new AlreadyExistsException("Element with id: " + product.id + " already exists");
         }
-
     }
 
     public Product[] findAll() {
@@ -51,7 +50,7 @@ public class ShopRepository {
     // Этот способ мы рассматривали в теории в теме про композицию
     public void removeById(int id) {
         if (findById(id) == null) {
-            new NotFoundException("Element with id: " + id + " not found");
+            throw new NotFoundException("Element with id: " + id + " not found");
         } else {
             Product[] tmp = new Product[products.length - 1];
             int copyToIndex = 0;
@@ -62,7 +61,6 @@ public class ShopRepository {
                 }
             }
             products = tmp;
-           // new AlreadyExistsException("Element with id: " + id + " remove");
         }
     }
 }
